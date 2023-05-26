@@ -14,6 +14,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 
 import java.text.SimpleDateFormat;
@@ -23,16 +25,19 @@ import java.util.Date;
 public class MyDBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "uts";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
     private static final String TABLE_NAME = "notes";
     private static final String KEY_ID = "id";
     private static final String KEY_TITLE = "title";
+    private static final String KEY_CATEGORY = "category";
     private static final String KEY_DESCRIPTION = "description";
     private static final String CREATED_AT = "created_at";
     private static final String UPDATED_AT = "updated_at";
+    Context ctx;
 
     public MyDBHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        ctx = context;
     }
 
     @Override
@@ -40,6 +45,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + TABLE_NAME + "("+ KEY_ID +" INTEGER PRIMARY KEY AUTOINCREMENT," +
                 KEY_TITLE + " TEXT," +
                 KEY_DESCRIPTION +" TEXT," +
+                KEY_CATEGORY +" TEXT," +
                 CREATED_AT + " datetime default current_timestamp," +
                 UPDATED_AT + " datetime default current_timestamp)");
     }
@@ -51,14 +57,21 @@ public class MyDBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void insertNote(String title, String description) {
+    public void insertNote(String title, String category, String description) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues val = new ContentValues();
         val.put(KEY_TITLE, title);
+        val.put(KEY_CATEGORY, category);
         val.put(KEY_DESCRIPTION, description);
 
-        db.insert(TABLE_NAME, null, val);
+        long res = db.insert(TABLE_NAME, null, val);
+
+        if(res == -1) {
+            Toast.makeText(ctx, "Add data failed !", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(ctx, "Add data success !", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public ArrayList<NoteModel> getNotes() {
@@ -71,8 +84,9 @@ public class MyDBHelper extends SQLiteOpenHelper {
             notes.id = cursor.getInt(0);
             notes.title = cursor.getString(1);
             notes.description = cursor.getString(2);
-            notes.created_at = cursor.getString(3);
-            notes.updated_at = cursor.getString(4);
+            notes.category = cursor.getString(3);
+            notes.created_at = cursor.getString(4);
+            notes.updated_at = cursor.getString(5);
 
             arrayList.add(notes);
         }
@@ -90,6 +104,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
         ContentValues val = new ContentValues();
         val.put(KEY_TITLE, note.title);
         val.put(KEY_DESCRIPTION, note.description);
+        val.put(KEY_CATEGORY, note.category);
         val.put(UPDATED_AT, date);
 
         db.update(TABLE_NAME, val, KEY_ID + "=" + note.id, null);
