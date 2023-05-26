@@ -53,8 +53,6 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
     public void insertNote(String title, String description) {
         SQLiteDatabase db = this.getWritableDatabase();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String date = sdf.format(new Date());
 
         ContentValues val = new ContentValues();
         val.put(KEY_TITLE, title);
@@ -82,5 +80,21 @@ public class MyDBHelper extends SQLiteOpenHelper {
         return arrayList;
         // MyDBHelper db = new MyDBHelper(this);
         // ArrayList<NoteModel> data = dbHelper.getNotes(); data.size();
+    }
+
+    public void updateNote(NoteModel note) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = sdf.format(new Date());
+
+        ContentValues val = new ContentValues();
+        val.put(KEY_TITLE, note.title);
+        val.put(KEY_DESCRIPTION, note.description);
+        val.put(UPDATED_AT, date);
+
+        db.update(TABLE_NAME, val, KEY_ID + "=" + note.id, null);
+        // NoteModel note = new NoteModel();
+        // note.id = 1;
+        // dbHelper.updateNote(note)
     }
 }
