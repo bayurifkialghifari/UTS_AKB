@@ -18,18 +18,24 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.uts.bayurifkialghifari_10120003.AddActivity;
+import com.uts.bayurifkialghifari_10120003.MyDBHelper;
+import com.uts.bayurifkialghifari_10120003.NoteModel;
+import com.uts.bayurifkialghifari_10120003.CustomNotesAdapter;
 import com.uts.bayurifkialghifari_10120003.R;
 import com.uts.bayurifkialghifari_10120003.databinding.FragmentNotesBinding;
+import java.util.ArrayList;
 
 public class NotesFragment extends Fragment {
 
     private FragmentNotesBinding binding;
     RecyclerView recyclerView;
     FloatingActionButton add_button;
+    CustomNotesAdapter customNotesAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -48,6 +54,13 @@ public class NotesFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        MyDBHelper db = new MyDBHelper(getActivity());
+        ArrayList<NoteModel> data = db.getNotes();
+
+        customNotesAdapter = new CustomNotesAdapter(getActivity(), data);
+        recyclerView.setAdapter(customNotesAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         return root;
     }
