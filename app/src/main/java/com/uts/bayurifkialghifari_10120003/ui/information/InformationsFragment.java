@@ -27,14 +27,14 @@ public class InformationsFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        InformationsViewModel notificationsViewModel =
+        InformationsViewModel ViewModel =
                 new ViewModelProvider(this).get(InformationsViewModel.class);
 
         binding = FragmentInformationBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textNotifications;
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        ViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

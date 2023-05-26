@@ -13,6 +13,9 @@
         android:theme="@style/Theme.UTS_10120003_BAYURIFKIALGHIFARI"
         tools:targetApi="31">
         <activity
+            android:name=".AddActivity"
+            android:exported="false" />
+        <activity
             android:name=".SplashActivity"
             android:exported="true"
             android:label="@string/title_activity_splash_screen"
