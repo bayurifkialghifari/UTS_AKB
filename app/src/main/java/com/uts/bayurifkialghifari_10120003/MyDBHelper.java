@@ -11,11 +11,13 @@ package com.uts.bayurifkialghifari_10120003;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class MyDBHelper extends SQLiteOpenHelper {
@@ -59,5 +61,26 @@ public class MyDBHelper extends SQLiteOpenHelper {
         val.put(KEY_DESCRIPTION, description);
 
         db.insert(TABLE_NAME, null, val);
+    }
+
+    public ArrayList<NoteModel> getNotes() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+        ArrayList<NoteModel> arrayList = new ArrayList<>();
+
+        while (cursor.moveToNext()) {
+            NoteModel notes = new NoteModel();
+            notes.id = cursor.getInt(0);
+            notes.title = cursor.getString(1);
+            notes.description = cursor.getString(2);
+            notes.created_at = cursor.getString(3);
+            notes.updated_at = cursor.getString(4);
+
+            arrayList.add(notes);
+        }
+
+        return arrayList;
+        // MyDBHelper db = new MyDBHelper(this);
+        // ArrayList<NoteModel> data = dbHelper.getNotes(); data.size();
     }
 }
