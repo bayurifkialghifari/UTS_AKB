@@ -33,8 +33,6 @@ public class InformationsFragment extends Fragment {
         binding = FragmentInformationBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textNotifications;
-        ViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
