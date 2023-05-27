@@ -54,8 +54,6 @@ public class UpdateActivity extends AppCompatActivity {
             title = getIntent().getStringExtra("title");
             category = getIntent().getStringExtra("category");
             description = getIntent().getStringExtra("description");
-
-            Toast.makeText(this, title, Toast.LENGTH_SHORT).show();
             // Set data
             u_note_title.setText(title);
             u_note_category.setText(category);
