@@ -107,4 +107,9 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
         db.update(TABLE_NAME, val, KEY_ID + "=" + note.id, null);
     }
+
+    public void deleteNote(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NAME, KEY_ID + "=" + id, null);
+    }
 }

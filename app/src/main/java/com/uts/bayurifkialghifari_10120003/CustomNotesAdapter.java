@@ -1,15 +1,22 @@
 package com.uts.bayurifkialghifari_10120003;
 
+import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.uts.bayurifkialghifari_10120003.ui.notes.NotesFragment;
 
 import java.util.ArrayList;
 
@@ -49,6 +56,16 @@ public class CustomNotesAdapter extends RecyclerView.Adapter<CustomNotesAdapter.
                 ctx.startActivity(intent);
             }
         });
+        holder.delete_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyDBHelper db = new MyDBHelper(ctx);
+                db.deleteNote(notes.get(position).id);
+                Toast.makeText(ctx, "Delete succsess", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ctx, MainActivity.class);
+                ctx.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -59,6 +76,7 @@ public class CustomNotesAdapter extends RecyclerView.Adapter<CustomNotesAdapter.
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView v_note_id, v_note_category, v_note_title, v_note_created_at, v_note_description;
         LinearLayout mainLayout;
+        Button delete_btn;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             v_note_id = itemView.findViewById(R.id.v_note_id);
@@ -67,6 +85,7 @@ public class CustomNotesAdapter extends RecyclerView.Adapter<CustomNotesAdapter.
             v_note_created_at = itemView.findViewById(R.id.v_note_created_at);
             v_note_description = itemView.findViewById(R.id.v_note_description);
             mainLayout = itemView.findViewById(R.id.mainLayout);
+            delete_btn = itemView.findViewById(R.id.delete_btn);
         }
     }
 }
