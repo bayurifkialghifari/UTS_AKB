@@ -11,15 +11,17 @@ package com.uts.bayurifkialghifari_10120003;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class AddActivity extends AppCompatActivity {
 
     EditText note_title, note_category, note_description;
-    Button save_btn;
+    Button save_btn, back_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class AddActivity extends AppCompatActivity {
         note_category = findViewById(R.id.note_category);
         note_description = findViewById(R.id.note_description);
         save_btn = findViewById(R.id.save_btn);
+        back_btn = findViewById(R.id.back_btn);
         save_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,6 +45,15 @@ public class AddActivity extends AppCompatActivity {
                 note_title.setText("");
                 note_category.setText("");
                 note_description.setText("");
+                Toast.makeText(AddActivity.this, "Create data success", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 

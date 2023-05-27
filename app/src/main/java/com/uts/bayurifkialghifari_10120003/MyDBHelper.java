@@ -92,8 +92,6 @@ public class MyDBHelper extends SQLiteOpenHelper {
         }
 
         return arrayList;
-        // MyDBHelper db = new MyDBHelper(this);
-        // ArrayList<NoteModel> data = dbHelper.getNotes(); data.size();
     }
 
     public void updateNote(NoteModel note) {
@@ -108,8 +106,5 @@ public class MyDBHelper extends SQLiteOpenHelper {
         val.put(UPDATED_AT, date);
 
         db.update(TABLE_NAME, val, KEY_ID + "=" + note.id, null);
-        // NoteModel note = new NoteModel();
-        // note.id = 1;
-        // dbHelper.updateNote(note)
     }
 }

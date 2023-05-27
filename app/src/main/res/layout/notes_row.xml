@@ -48,6 +48,17 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/v_note_description"
+                android:layout_width="32dp"
+                android:layout_height="15dp"
+                android:text="description"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
                 android:id="@+id/v_note_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -13,9 +13,13 @@
         android:theme="@style/Theme.UTS_10120003_BAYURIFKIALGHIFARI"
         tools:targetApi="31">
         <activity
+            android:name=".UpdateActivity"
+            android:exported="false"
+            android:label="Uodate Note" />
+        <activity
             android:name=".AddActivity"
-            android:label="Add Note"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Add Note" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"

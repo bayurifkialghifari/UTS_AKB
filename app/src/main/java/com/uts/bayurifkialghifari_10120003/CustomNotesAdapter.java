@@ -1,9 +1,11 @@
 package com.uts.bayurifkialghifari_10120003;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,7 +36,19 @@ public class CustomNotesAdapter extends RecyclerView.Adapter<CustomNotesAdapter.
         holder.v_note_id.setText(String.valueOf(notes.get(position).id));
         holder.v_note_title.setText(String.valueOf(notes.get(position).title));
         holder.v_note_category.setText(String.valueOf(notes.get(position).category));
+        holder.v_note_description.setText(String.valueOf(notes.get(position).description));
         holder.v_note_created_at.setText(String.valueOf(notes.get(position).created_at));
+        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ctx, UpdateActivity.class);
+                intent.putExtra("id", String.valueOf(notes.get(position).id));
+                intent.putExtra("title", String.valueOf(notes.get(position).title));
+                intent.putExtra("category", String.valueOf(notes.get(position).category));
+                intent.putExtra("description", String.valueOf(notes.get(position).description));
+                ctx.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -43,13 +57,16 @@ public class CustomNotesAdapter extends RecyclerView.Adapter<CustomNotesAdapter.
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView v_note_id, v_note_category, v_note_title, v_note_created_at;
+        TextView v_note_id, v_note_category, v_note_title, v_note_created_at, v_note_description;
+        LinearLayout mainLayout;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             v_note_id = itemView.findViewById(R.id.v_note_id);
             v_note_category = itemView.findViewById(R.id.v_note_category);
             v_note_title = itemView.findViewById(R.id.v_note_title);
             v_note_created_at = itemView.findViewById(R.id.v_note_created_at);
+            v_note_description = itemView.findViewById(R.id.v_note_description);
+            mainLayout = itemView.findViewById(R.id.mainLayout);
         }
     }
 }

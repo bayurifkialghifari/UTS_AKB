@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    tools:context=".AddActivity"
+    tools:context=".UpdateActivity"
     android:padding="30dp">
 
     <EditText
-        android:id="@+id/note_title"
+        android:id="@+id/u_note_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -17,7 +17,7 @@
         android:inputType="text" />
 
     <EditText
-        android:id="@+id/note_category"
+        android:id="@+id/u_note_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -26,7 +26,7 @@
         android:inputType="text" />
 
     <EditText
-        android:id="@+id/note_description"
+        android:id="@+id/u_note_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -35,13 +35,13 @@
         android:inputType="text" />
 
     <Button
-        android:id="@+id/save_btn"
+        android:id="@+id/u_save_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Save" />
 
     <Button
-        android:id="@+id/back_btn"
+        android:id="@+id/u_back_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Back" />
