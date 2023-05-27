@@ -1,3 +1,12 @@
+/**
+ *
+ * Nama : Bayu Rifki Alghifari
+ * Nim : 10120003
+ * Kelas : IF 1
+ * Email : Bayu Rifki Alghifari
+ *
+ */
+
 package com.uts.bayurifkialghifari_10120003;
 
 import androidx.appcompat.app.AppCompatActivity;

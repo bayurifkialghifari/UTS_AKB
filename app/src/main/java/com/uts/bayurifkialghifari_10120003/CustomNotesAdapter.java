@@ -1,8 +1,14 @@
+/**
+ *
+ * Nama : Bayu Rifki Alghifari
+ * Nim : 10120003
+ * Kelas : IF 1
+ * Email : Bayu Rifki Alghifari
+ *
+ */
+
 package com.uts.bayurifkialghifari_10120003;
 
-import android.app.Activity;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
